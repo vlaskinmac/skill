@@ -6,7 +6,9 @@ from django.views import View
 class ToDoView(View):
 
     def get(self, request, *args, **kwargs):
-        # TODO не уверен что правильно прописал! Или нужно списку присвоить переменную и переменную
-        #  передать в класс HttpResponse?
-        return HttpResponse(['<ul>''<li>Установить python</li>''<li>Установить django</li>' '<li>Запустить сервер</li>'
-                             '<li>Порадоваться результату</li>' '<li>Пятый пункт!</li>''</ul>'])
+        case = ['Установить python', 'Установить django', 'Запустить сервер', 'Порадоваться результату', 'Пятый пункт!']
+        tags_case = []
+        for i in case:
+            tags_case.append(f'<li>{i}</li>')
+        response_case = f'<ul>{"".join(tags_case)}</ul>'
+        return HttpResponse(response_case)
