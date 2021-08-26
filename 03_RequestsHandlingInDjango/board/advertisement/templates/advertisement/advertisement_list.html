@@ -5,16 +5,20 @@
     <title>Главная</title>
 </head>
 <body>
-      <p>Прошел все курсы на <a href="https://skillbox.ru">Skillbox</a></p>
-      <p>Продаю готовые домашние задания</p>
-      <ul><h3>
-          <li><a href="course_1">Курс 1</a></li><p></p>
-          <li><a href="course_2">Курс 2</a></li><p></p>
-          <li><a href="course_3">Курс 3</a></li><p></p>
-          <li><a href="course_4">Курс 4</a></li><p></p></h3>
-          <li><a href="advertisement">Список объявлений</a></li><p></p></h3>
+      <p>Регион:
+          <select name="region">
+            {% for region in regions %}
+               <option>
+                 {{ region }}
+               </option>
+            {% endfor %}
+          </select> <input type="text" size="40">
+        </p>
+        <p style="text-align: left"><button>НАЙТИ</button></p>
+      <ul>
           <li><a href="about"> Информация о компании </a></li><p></p>
           <li><a href="contacts">Контакты</a></li><p></p>
+          <li><a href="advertisement">Объявления</a></li><p></p>
       </ul>
 </body>
 </html>

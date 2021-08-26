@@ -3,30 +3,10 @@ from django.views import View
 from django.views.generic import TemplateView
 
 
-def advertisement_list(request, *args, **kwargs):
-    return render(request, 'advertisement/advertisement_list.html')
-
-
-def course_1(request, *args, **kwargs):
-    return render(request, 'advertisement/course_1.html')
-
-
-def course_2(request, *args, **kwargs):
-    return render(request, 'advertisement/course_2.html')
-
-
-def course_3(request, *args, **kwargs):
-    return render(request, 'advertisement/course_3.html')
-
-
-def course_4(request, *args, **kwargs):
-    return render(request, 'advertisement/course_4.html')
-
-# TODO с этими классами проблема, возможно в шаблонах ошибки
 class Contacts(TemplateView):
     template_name = 'advertisement/contacts.html'
 
-    def contacts(self, **kwargs):
+    def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['contacts'] = ['8-800-708-19-45', '8-800-708-19-45', '8-800-708-19-45']
         context['title'] = 'Контакты'
@@ -38,7 +18,7 @@ class Contacts(TemplateView):
 class Companies(TemplateView):
     template_name = 'advertisement/companies.html'
 
-    def company(self, **kwargs):
+    def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['name_company'] = 'any_name_company'
         context['title'] = 'О Компании'
@@ -57,3 +37,10 @@ class CBV(View):
         if method_post:
             count += 1
         return render(request, 'advertisement/count_post.html', {'counts': count})
+
+
+class AdvertisementList(View):
+    def get(self, request):
+        list_regions = ['region 1', 'region 2', 'region 3', 'region 4', 'region 5', ]
+        return render(request, 'advertisement/advertisement_list.html', {'regions': list_regions })
+
