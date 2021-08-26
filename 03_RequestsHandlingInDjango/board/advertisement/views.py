@@ -22,7 +22,7 @@ def course_3(request, *args, **kwargs):
 def course_4(request, *args, **kwargs):
     return render(request, 'advertisement/course_4.html')
 
-
+# TODO с этими классами проблема, возможно в шаблонах ошибки
 class Contacts(TemplateView):
     template_name = 'advertisement/contacts.html'
 
@@ -31,6 +31,18 @@ class Contacts(TemplateView):
         context['contacts'] = ['8-800-708-19-45', '8-800-708-19-45', '8-800-708-19-45']
         context['title'] = 'Контакты'
         context['emails'] = ['sales@company.com', 'sales@company.com', 'sales@company.com']
+        context['address'] = ['city-1', 'city-2', 'city-3', 'city-4', 'city-5']
+        return context
+
+
+class Companies(TemplateView):
+    template_name = 'advertisement/companies.html'
+
+    def company(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['name_company'] = 'any_name_company'
+        context['title'] = 'О Компании'
+        context['description'] = 'any_description'
         return context
 
 

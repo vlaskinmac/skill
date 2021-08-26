@@ -50,15 +50,15 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     # 'board.middleware.filter_ip_middleware.FilterIPMiddleware',
     # 'board.middleware.filter_ip_middleware.TimeSleepIPMiddleware',
-    'board.middleware.filter_ip_middleware.BlockTimeIPMiddleware',
+    'board.middleware.filter_ip_middleware.EventsLogMiddleware',
 ]
 
 ROOT_URLCONF = 'board.urls'
-
+TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [TEMPLATE_DIR],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
