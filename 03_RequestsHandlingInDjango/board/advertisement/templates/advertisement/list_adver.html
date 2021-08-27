@@ -9,8 +9,9 @@
     <p><a href="http://127.0.0.1:8000/">На главную</a></p>
     <ul>
         {% for adver in list_adver %}
-            <li>объявление - {{ adver }}</li>
+            <li>- {{ adver }}</li>
         {% endfor %}
     </ul>
+    <p>Счетчик GET запросов - {{ counts }}</p>
 </body>
 </html>

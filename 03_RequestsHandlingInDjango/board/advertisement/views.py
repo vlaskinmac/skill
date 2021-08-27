@@ -27,16 +27,15 @@ class Companies(TemplateView):
 
 
 class CBV(View):
+
     def get(self, request):
+        count = 0
         list_advertisement = ['объявление 1', 'объявление 2', 'объявление 2', 'объявление 4', 'объявление 5', ]
-        return render(request, 'advertisement/list_adver.html', {'list_adver': list_advertisement})
+        count += 1
+        return render(request, 'advertisement/list_adver.html', {'list_adver': list_advertisement, 'counts': count})
 
     def post(self, request):
-        count = 0
-        method_post = request.META.get('REQUEST_METHOD')
-        if method_post:
-            count += 1
-        return render(request, 'advertisement/count_post.html', {'counts': count})
+        return render(request, 'advertisement/count_post.html')
 
 
 class AdvertisementList(View):

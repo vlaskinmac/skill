@@ -5,20 +5,25 @@
     <title>Главная</title>
 </head>
 <body>
-      <p>Регион:
+    <p>Регион:
           <select name="region">
             {% for region in regions %}
                <option>
                  {{ region }}
                </option>
             {% endfor %}
-          </select> <input type="text" size="40">
+          </select>
         </p>
-        <p style="text-align: left"><button>НАЙТИ</button></p>
+      <form action="http://127.0.0.1:8000/advertisement/" method="post">
+        {% csrf_token %}
+          <p>Введите название объявления:
+          <input type="text" size="40"> <input type="submit" value="НАЙТИ">
+        </p>
+    </form>
       <ul>
           <li><a href="about"> Информация о компании </a></li><p></p>
           <li><a href="contacts">Контакты</a></li><p></p>
-          <li><a href="advertisement">Объявления</a></li><p></p>
+          <li><a href="advertisement">Объявления (счетчик GET запросов здесь)</a></li><p></p>
       </ul>
 </body>
 </html>
