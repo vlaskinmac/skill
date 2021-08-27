@@ -32,7 +32,7 @@ class CBV(View):
     def get(self, request):
         CBV.count += 1
         list_advertisement = ['объявление 1', 'объявление 2', 'объявление 2', 'объявление 4', 'объявление 5', ]
-        return render(request, 'advertisement/list_adver.html', {'list_adver': list_advertisement}, CBV.count)
+        return render(request, 'advertisement/list_adver.html', {'list_adver': list_advertisement})
 
     def post(self, request):
         return render(request, 'advertisement/count_post.html')
