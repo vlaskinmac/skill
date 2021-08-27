@@ -27,19 +27,24 @@ class Companies(TemplateView):
 
 
 class CBV(View):
+    count = 0
 
     def get(self, request):
-        count = 0
+        self.count += 1
         list_advertisement = ['объявление 1', 'объявление 2', 'объявление 2', 'объявление 4', 'объявление 5', ]
-        count += 1
-        return render(request, 'advertisement/list_adver.html', {'list_adver': list_advertisement, 'counts': count})
+        return render(request, 'advertisement/list_adver.html', {'list_adver': list_advertisement}, self.count)
 
     def post(self, request):
         return render(request, 'advertisement/count_post.html')
 
 
+def count_requests(request):
+    count = CBV()
+    return render(request, 'advertisement/counts.html', {'counts': count.get(request)})
+
+
 class AdvertisementList(View):
     def get(self, request):
         list_regions = ['region 1', 'region 2', 'region 3', 'region 4', 'region 5', ]
-        return render(request, 'advertisement/advertisement_list.html', {'regions': list_regions })
+        return render(request, 'advertisement/advertisement_list.html', {'regions': list_regions})
 
