@@ -39,10 +39,6 @@ class Advertisements(View):
         return render(request, 'advertisement/post.html')
 
 
-def count_requests(request):
-    return render(request, 'advertisement/counts.html', {'counts': Advertisements.count})
-
-
 class AdvertisementList(View):
     def get(self, request):
         list_regions = ['region 1', 'region 2', 'region 3', 'region 4', 'region 5', ]
