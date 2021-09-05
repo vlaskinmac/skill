@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Объявления</title>
+</head>
+<body>
+    <p><a href="http://127.0.0.1:8000/">На главную</a></p>
+    <table>
+        <tr>
+            <th><a href="detail">Заголовок</a></th><th></th><th>Цена</th><th></th><th>Рубрика</th>
+        </tr>
+        {% for adver in advertisements_list %}
+        <tr>
+            <td>{{adver.title}}</td><td></td>
+            <td>{{adver.price}} руб.</td><td></td>
+            <td>{{adver.rubric_adv.name}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
