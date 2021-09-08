@@ -15,8 +15,8 @@ class AdvertisementsListView(generic.ListView):
 class AdvertisementsDetailView(generic.DetailView):
     model = models.Advertisement
 
-    def get(self, request, **kwargs):
-        modell = models.Advertisement.objects.first()
+    def count(self, request):
+        modell = models.Advertisement.objetts.get(id=self.model.pk)
         modell.views_count += 1
         modell.save()
         return render(request, 'advertisements_app/advertisement_detail.html',
