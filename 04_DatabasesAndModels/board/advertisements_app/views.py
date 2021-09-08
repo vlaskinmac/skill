@@ -1,26 +1,23 @@
 from django.shortcuts import render
 from . import models
-from django.views import View
+from django.views import View, generic
 
 
-def index(request, *args, **kwargs):
-    return render(request, 'advertisements_app/index.html')
-
-
-def advertisements(request, *args, **kwargs):
-    advertisements_list = models.Advertisement.objects.all()
-    return render(request, 'advertisements_app/list_adver.html', {
-        'advertisements_list': advertisements_list
-    })
-
-
-class Advertisements(View):
-    count = 0
-
+class Index(View):
     def get(self, request):
-        Advertisements.count += 1
-        advertisements_list = models.Advertisement.objects.all()
-        return render(request, 'advertisements_app/details_adver.html', {'advertisements_list': advertisements_list,
-                                                                         'counts': Advertisements.count})
+        return render(request, 'advertisements_app/index.html')
 
 
+class AdvertisementsListView(generic.ListView):
+    model = models.Advertisement
+
+
+class AdvertisementsDetailView(generic.DetailView):
+    model = models.Advertisement
+
+    def get(self, request, **kwargs):
+        modell = models.Advertisement.objects.first()
+        modell.views_count += 1
+        modell.save()
+        return render(request, 'advertisements_app/advertisement_detail.html',
+                      {'counts': modell.views_count})

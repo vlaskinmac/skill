@@ -8,32 +8,34 @@ class Advertisement(models.Model):
     update_at = models.DateTimeField(verbose_name='Дата изменения:', auto_now=True)
     price = models.FloatField(verbose_name='Цена:', default=0)
     views_count = models.IntegerField(verbose_name='Количество просмотров:', default=0)
-    author_adv = models.ForeignKey('Author', default=None, null=True, on_delete=models.CASCADE, related_name='author')
-    rubric_adv = models.ForeignKey('Rubric', default=None, null=True, on_delete=models.CASCADE, related_name='rubric')
-    type_adv = models.ForeignKey('TypeAdv', default=None, null=True, on_delete=models.CASCADE, related_name='adv_type')
+    author_adv = models.ForeignKey('Author', null=True, verbose_name='Автор:',on_delete=models.CASCADE, related_name='author')
+    rubric_adv = models.ForeignKey('Rubric', verbose_name='Наименование:', null=True, on_delete=models.CASCADE,
+                                   related_name='rubric')
+    type_adv = models.ForeignKey('TypeAdv', null=True, on_delete=models.CASCADE, related_name='adv_type',
+                                 verbose_name='Тип объявления:')
 
     def __str__(self):
         return self.title
 
 
 class Author(models.Model):
-    name = models.CharField(verbose_name='Имя автора:', max_length=50)
-    email = models.CharField(verbose_name='E-mail:', max_length=30)
-    phone = models.IntegerField(verbose_name='Телефон:')
+    name = models.CharField(max_length=50)
+    email = models.CharField(max_length=30)
+    phone = models.IntegerField()
 
     def __str__(self):
         return self.name
 
 
 class Rubric(models.Model):
-    name = models.CharField(verbose_name='Наименование:', max_length=80)
+    name = models.CharField(max_length=80)
 
     def __str__(self):
         return self.name
 
 
 class TypeAdv(models.Model):
-    name = models.CharField(verbose_name='Тип объявления:', max_length=50)
+    name = models.CharField(max_length=50)
 
     def __str__(self):
         return self.name

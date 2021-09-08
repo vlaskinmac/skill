@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Объявления</title>
+</head>
+    <p><a href="http://127.0.0.1:8000/">На главную</a></p>
+    <br>
+    <h1>Объявления</h1>
+
+    {% if object_list %}
+    <ul>
+        {% for adver in object_list %}
+        <li>
+            <a href="{{ adver.id }}">{{ adver.title }}</a>
+        </li><br>
+    {% endfor %}
+    </ul>
+    {% else %}
+        <p>Объявлений нет.</p>
+    {% endif %}
+
+</html>

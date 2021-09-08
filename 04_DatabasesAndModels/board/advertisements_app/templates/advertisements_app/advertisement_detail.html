@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ object.title }}</title>
+</head>
+<body>
+    <p><a href="http://127.0.0.1:8000/">На главную</a></p>
+    <p><a href="http://127.0.0.1:8000/advertisements/">Назад</a></p>
+    <p>Объявление: {{object.title }}</p>
+    <p>Цена: {{ object.price }} руб.</p>
+    <p>Описание: {{ object.description }}</p>
+    <p>Рубрика: {{ object.rubric_adv.name }}</p>
+    <p>Тип объявления: {{ object.type_adv.name }}</p>
+    <p>Контактная информация: {{ object.author_adv.name }} E-mail: {{ object.author_adv.email }}
+        Телефон: {{ object.author_adv.phone }}</p>
+    <p>Количество просмотров:  {{ counts }}</p>
+
+</body>
+</html>

@@ -10,9 +10,9 @@ class EventsLogMiddleware:
         self.count = 0
 
     def __call__(self, request):
-        ip = request.META.get('REMOTE_ADDR')
-        method_gp = request.META.get('REQUEST_METHOD')
-        url = request.META.get('HTTP_REFERER')
+        ip = request.META.get('REMOTE_ADDR', )
+        method_gp = request.META.get('REQUEST_METHOD', )
+        url = request.META.get('HTTP_REFERER', )
         if ip:
             self.count += 1
         response = self.get_response(request)
@@ -27,7 +27,7 @@ class FilterIPMiddleware:
     def __call__(self, request):
         allowed_ips = ['127.0.0.1']
         # allowed_ips = ['']
-        ip = request.META.get('REMOTE_ADDR')
+        ip = request.META.get('REMOTE_ADDR', )
         if ip not in allowed_ips:
             raise PermissionDenied
         response = self.get_response(request)
@@ -40,7 +40,7 @@ class TimeSleepIPMiddleware:
         self.count = 0
 
     def __call__(self, request):
-        if request.META.get('REMOTE_ADDR'):
+        if request.META.get('REMOTE_ADDR', ):
             self.count += 1
         if self.count % 2 == 0:
             response = self.get_response(request)
